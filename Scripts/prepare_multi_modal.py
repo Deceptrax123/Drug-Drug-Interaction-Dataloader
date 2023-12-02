@@ -37,7 +37,7 @@ def prepare_multi_modal_csv():
         symptoms.append(side_effects)
 
     cleaned_dataframe = pd.DataFrame({
-        'ID1': id1, 'ID2': id2, 'X1': reactant1, 'X2': reactant_2, 'Side Effect Name': symptoms
+        'ID1': id1, 'ID2': id2, 'X1': reactant1, 'X2': reactant2, 'Side Effect Name': symptoms
     })
 
     # Convert to csv file

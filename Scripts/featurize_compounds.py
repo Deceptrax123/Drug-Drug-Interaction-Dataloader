@@ -1,11 +1,8 @@
-import torch
 import pandas as pd
 import numpy as np
 
 from rdkit import Chem
 from rdkit.Chem.rdmolops import GetAdjacencyMatrix
-
-from torch_geometric.data import Data
 
 
 def one_hot_encoding(x, permitted_list):
@@ -22,8 +19,9 @@ def one_hot_encoding(x, permitted_list):
 
 def get_atom_features(atom):
 
-    atoms_list = ['C', 'N', 'O', 'H', 'Li',
-                  'Al', 'Si', 'S', 'Cl', 'F', 'P', 'I']
+    atoms_list = ['C', 'N', 'O', 'S', 'F', 'Si', 'P', 'Cl', 'Br', 'Mg', 'Na', 'Ca', 'Fe',
+                  'As', 'Al', 'I', 'B', 'V', 'K', 'Tl', 'Yb', 'Sb', 'Sn', 'Ag', 'Pd', 'Co', 'Se', 'Ti', 'Zn', 'Li',
+                  'Ge', 'Cu', 'Au', 'Ni', 'Cd', 'In', 'Mn', 'Zr', 'Cr', 'Pt', 'Hg', 'Pb', 'Unknown']
 
     atom_type_enc = one_hot_encoding(str(atom.GetSymbol()), atoms_list)
     formal_charg_enc = one_hot_encoding(
@@ -37,7 +35,7 @@ def get_atom_features(atom):
 
     ring_enc = [int(atom.IsInRing())]
     aromatic_enc = [int(atom.GetIsAromatic())]
-    atomic_mass = [float((atom.getMass()-10.812)/116.092)]
+    atomic_mass = [float((atom.GetMass()-10.812)/116.092)]
 
     vdw_radius = [
         float((Chem.GetPeriodicTable().GetRvdw(atom.GetAtomicNum())-1.5)/0.6)]
@@ -58,7 +56,7 @@ def get_atom_features(atom):
 
 def get_bond_features(bond):
 
-    bond_types = [Chem.rdchem.BondType.SINGLE, Chem.redchem.BondType.DOUBLE,
+    bond_types = [Chem.rdchem.BondType.SINGLE, Chem.rdchem.BondType.DOUBLE,
                   Chem.rdchem.BondType.TRIPLE, Chem.rdchem.BondType.AROMATIC]
     stereo_types = ['STEREOZ', 'STEREOE', 'STEREOANY', 'STEREONONE']
 
