@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-def prepare_multi_modal_csv():
+def prepare_multi_label_csv():
 
     data = pd.read_csv("data/twosides.csv")
 
@@ -42,7 +42,3 @@ def prepare_multi_modal_csv():
 
     # Convert to csv file
     cleaned_dataframe.to_csv("data/twosides_cleaned.csv")
-
-
-if __name__ == '__main__':
-    prepare_multi_modal_csv()

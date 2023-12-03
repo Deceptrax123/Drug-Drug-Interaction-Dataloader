@@ -6,10 +6,11 @@ from tdc.utils import get_label_map
 from rdkit import Chem
 from rdkit.Chem.rdmolops import GetAdjacencyMatrix
 from torch_geometric.data import Data
-from torch_geometric.data import Dataset
 
 from featurize_compounds import get_atom_features, get_bond_features
 from pair_graphs import PairData
+from dotenv import load_dotenv
+import os
 
 
 def label_map_target(labels, num_classes=1317):  # Obtained from dataset analysis
@@ -32,10 +33,13 @@ def label_map_target(labels, num_classes=1317):  # Obtained from dataset analysi
     return target
 
 
-def get_graphs(items):
+def get_graphs(items, split):
+    load_dotenv("../env")
+    train_path = os.getenv("GRAPH_TRAIN_PATH")
+    test_path = os.getenv("GRAPH_TEST_PATH")
+    val_path = os.getenv("GRAPH_VAL_PATH")
 
-    molecular_graphs = list()
-    for item in items:
+    for u, item in enumerate(items):
         smiles = [item[0], item[1]]
         graph_tensors = list()
         labels = item[2]
@@ -89,5 +93,10 @@ def get_graphs(items):
                                 edge_attr_s=mol_graph1.edge_attr,
                                 x_t=mol_graph2.x, edge_index_t=mol_graph2.edge_index,
                                 edge_attr_t=mol_graph2.edge_attr, target=y_tensor)
-        molecular_graphs.append(paired_graph)
-    return molecular_graphs
+
+        if split == 'train':
+            torch.save(paired_graph, train_path+str(u)+'.pt')
+        elif split == 'test':
+            torch.save(paired_graph, test_path+str(u)+'.pt')
+        elif split == 'val':
+            torch.save(paired_graph, val_path+str(u)+'.pt')
