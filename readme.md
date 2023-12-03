@@ -8,6 +8,8 @@ The above implementation makes use of both node features(atoms) and edge feature
 In order to download the Graphs, follow the following steps.
 
 - Clone the Repository:```git clone git@github.com:Deceptrax123/GNN-Dataloader-For-Chemical-Reaction-Applications.git ```
+- Run ```pip install -r requirements.txt```
+- Save the environment variables mentioned below in a ```.env``` file 
 - Run ```Scripts/download_pipeline.py``` and follow the steps to effectively save the .pt files.
 
 ## Train and Run
@@ -27,6 +29,7 @@ To train and evaluate GNN models, the following modifications need to be made to
 - Since 2 graphs need to be loaded, the Batching technique has been changed. More information on this can be found <a href="https://pytorch-geometric.readthedocs.io/en/latest/advanced/batching.html">here</a>.
 
 ## Environment Variables
+
 |Key|Value Description|File|
 |-----|-----|----|
 |tup_bins|The path to the location that saves the tuple binaries of reactants and labels.|Scripts/download_pipeline.py|
