@@ -13,8 +13,9 @@ from molecule_dataloader import get_graphs
 
 
 class MolecularGraphDataset(Dataset):
-    def __init__(self, key, start, root, transform=None, pre_transform=None, pre_filter=None):
+    def __init__(self, key, start, root, step=7500, transform=None, pre_transform=None, pre_filter=None):
         self.key = key
+        self.step = step
         self.start = start
         self.root = root
 
@@ -25,12 +26,12 @@ class MolecularGraphDataset(Dataset):
         load_dotenv('.env')
         rp = os.getenv(self.key)
 
-        return [name for name in os.listdir(rp)[self.start:self.start+10000] if '_' not in name]
+        return [name for name in os.listdir(rp)[self.start:self.start+self.step] if '_' not in name]
 
     @property
     def processed_file_names(self):
         load_dotenv('.env')
-        l = 10000  # run in folds of 10,000 each
+        l = self.step
 
         proccessed_names = list()
         for n in range(self.start, self.start+l):
@@ -42,10 +43,10 @@ class MolecularGraphDataset(Dataset):
     def raw_paths(self):
         load_dotenv('.env')
         directory = os.getenv(self.key)
-        return [os.path.join(directory, file) for file in os.listdir(directory)[self.start:self.start+10000] if '_' not in file]
+        return [os.path.join(directory, file) for file in os.listdir(directory)[self.start:self.start+self.step] if '_' not in file]
 
     def process(self):
-        idx = 0
+        idx = self.start
 
         for raw_path in self.raw_paths:
             with open(raw_path, 'rb') as fp:
