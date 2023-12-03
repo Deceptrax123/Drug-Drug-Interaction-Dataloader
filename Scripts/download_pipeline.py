@@ -90,10 +90,9 @@ def process_graphs():  # Save the Graphs as .pt files
 
     # create concurrent processes
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        params = [(0, 'fold1'), (5000, 'fold2'), (10000, 'fold3'),
-                  (15000, 'fold4'), (20000, 'fold5'), (25000, 'fold6'),
-                  (30000, 'fold7'), (35000, 'fold8'), (40000, 'fold9'),
-                  (45000, 'fold10'), (50000, 'fold11'), (55000, 'fold12')]
+        params = [(0, 'fold1'), (7500, 'fold2'), (15000, 'fold3'),
+                  (22500, 'fold4'), (30000, 'fold5'), (37500, 'fold6'),
+                  (45000, 'fold7'), (52500, 'fold8')]
         pool = [executor.submit(download_function, i,) for i in params]
 
         for i in concurrent.futures.as_completed(pool):
