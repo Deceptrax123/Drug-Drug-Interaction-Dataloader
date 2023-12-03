@@ -9,8 +9,3 @@ class PairData(Data):
         if key == 'edge_index_t':
             return self.x_t.size(0)
         return super().__inc__(key, value, *args, **kwargs)
-
-    def __cat_dim__(self, key: str, value: Any, *args, **kwargs):
-        if key == 'target':
-            return None
-        return super().__cat_dim__(key, value, *args, **kwargs)
