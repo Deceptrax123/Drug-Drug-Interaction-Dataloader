@@ -4,6 +4,8 @@ import pandas as pd
 from dotenv import load_dotenv
 import pickle
 import os
+import multiprocessing
+import concurrent.futures
 
 # Download csvs and save the graphs as .pt files as required for graph dataloader classes
 
@@ -76,12 +78,26 @@ def save_data_binaries():  # Save the tuple objects of (reactant1,reactant2,labe
         f_num += 1
 
 
+def download_function(p):
+    load_dotenv('.env')
+    dataset = MolecularGraphDataset(
+        key='tup_bins', root=os.getenv('graph_files')+p[1]+'/data/', start=p[0])
+
+
 def process_graphs():  # Save the Graphs as .pt files
     # process graphs and save them to disk.
     load_dotenv('.env')
 
-    # Save the dataset to the path key points to
-    dataset = MolecularGraphDataset(key='tup_bins')
+    # create concurrent processes
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        params = [(0, 'fold1'), (5000, 'fold2'), (10000, 'fold3'),
+                  (15000, 'fold4'), (20000, 'fold5'), (25000, 'fold6'),
+                  (30000, 'fold7'), (35000, 'fold8'), (40000, 'fold9'),
+                  (45000, 'fold10'), (50000, 'fold11'), (55000, 'fold12')]
+        pool = [executor.submit(download_function, i,) for i in params]
+
+        for i in concurrent.futures.as_completed(pool):
+            print("Data Fold Save Completed")
 
 
 # Run the download pipeline(only if u dont have the .pt files)

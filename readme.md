@@ -13,6 +13,7 @@ In order to download the Graphs, follow the following steps.
 - Run ```pip install -r requirements.txt```
 - Save the environment variables mentioned below in a ```.env``` file 
 - Run ```Scripts/download_pipeline.py``` and follow the steps to effectively save the .pt files.
+- You may edit the number of concurrent processes according to your system specs.
 
 ## Train and Run
 To train and evaluate GNN models, the following modifications need to be made to the ```graph_dataset.py``` script.
@@ -32,6 +33,7 @@ To train and evaluate GNN models, the following modifications need to be made to
 
 ## Environment Variables
 
-|Key|Value Description|File|
-|-----|-----|----|
-|tup_bins|The path to the location that saves the tuple binaries of reactants and labels.|Scripts/download_pipeline.py|
+|Key|Value Description|
+|-----|-----|
+|tup_bins|The path to the location that saves the tuple binaries of reactants and labels.|
+|graph_files|The root directory to where you want your graph .pt files to be stored|
