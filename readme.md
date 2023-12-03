@@ -9,7 +9,7 @@ The TWOSIDES Pharamacy Side Effects Dataset from TDC was used which you can refe
 ## Download Data
 In order to download the Graphs, follow the following steps.
 
-- Clone the Repository:```git clone git@github.com:Deceptrax123/GNN-Dataloader-For-Chemical-Reaction-Applications.git ```
+- Clone the Repository:```git clone git@github.com:Deceptrax123/GNN-Dataloader-For-Chemical-Interaction-Applications.git ```
 - Run ```pip install -r requirements.txt```
 - Save the environment variables mentioned below in a ```.env``` file 
 - Run ```Scripts/download_pipeline.py``` and follow the steps to effectively save the .pt files.
