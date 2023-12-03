@@ -13,7 +13,7 @@ from molecule_dataloader import get_graphs
 
 
 class MolecularGraphDataset(Dataset):
-    def __init__(self, key, root='../data/', transform=None, pre_transform=None, pre_filter=None):
+    def __init__(self, key, root='data/', transform=None, pre_transform=None, pre_filter=None):
         self.key = key
 
         super().__init__(root, transform, pre_transform, pre_filter)

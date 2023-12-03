@@ -11,7 +11,7 @@ In order to download the Graphs, follow the following steps.
 - Run ```Scripts/download_pipeline.py``` and follow the steps to effectively save the .pt files.
 
 ## Train and Run
-To train and evaluate GNN models, the following modifications need to be made to the dataset script.
+To train and evaluate GNN models, the following modifications need to be made to the ```graph_dataset.py``` script.
 
 - Do not override the ```process()``` function
 - Use the  ```processed_paths``` property in the same way as mentioned in the <a href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.Dataset.html#torch_geometric.data.Dataset">docs</a> by giving the absolute path to each .pt file. This ensures the entire dataset isnt processed again.
@@ -24,4 +24,4 @@ To train and evaluate GNN models, the following modifications need to be made to
 
 ## Batching
 
-- Since 2 graphs need to be loaded, the Batching technique has been changed. More information on this can be found <a hred="https://pytorch-geometric.readthedocs.io/en/latest/advanced/batching.html">here</a>.
+- Since 2 graphs need to be loaded, the Batching technique has been changed. More information on this can be found <a href="https://pytorch-geometric.readthedocs.io/en/latest/advanced/batching.html">here</a>.
