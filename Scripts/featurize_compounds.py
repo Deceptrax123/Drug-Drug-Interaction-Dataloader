@@ -1,3 +1,5 @@
+
+# Featurize atoms and bonds(nodes and edges of a graph)
 import pandas as pd
 import numpy as np
 

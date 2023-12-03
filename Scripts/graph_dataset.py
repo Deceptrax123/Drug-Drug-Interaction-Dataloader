@@ -1,4 +1,6 @@
 # Use this to save the graphs to disk since the process function is not overridden.
+# Once this is run, remove the process function and include the processed_paths property
+# using the same format as raw_paths property
 
 from typing import List, Tuple, Union
 import torch

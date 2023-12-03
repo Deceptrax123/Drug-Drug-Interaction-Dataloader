@@ -1,4 +1,4 @@
-# Input a pair of smile strings to output a pair of graphs representing the string
+# Input a pair of smile strings with labels to output a pair of graphs representing a molecule
 
 import torch
 import pandas as pd

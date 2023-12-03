@@ -2,6 +2,7 @@ from typing import Any
 from torch_geometric.data import Data
 
 
+# Class to pair 2 graphs since Data accepts only 1 graph
 class PairData(Data):
     def __inc__(self, key, value, *args, **kwargs):
         if key == 'edge_index_s':
