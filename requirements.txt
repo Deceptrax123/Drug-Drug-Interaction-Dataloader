@@ -3,6 +3,6 @@
  torch
  torch_geometric
  pandas
- matplotlib
  scikit-learn
  rdkit
+ python-dotenv
