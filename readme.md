@@ -1,8 +1,10 @@
-# Torch Geometric Dataset for applications involving Chemical(SMILE Strings) Reactions
+# Torch Geometric Dataset for applications involving Chemical(SMILE Strings) Interactions
 
 The repository contains the code for an effective way of making a Molecular Graph Dataset in Torch Geometric involving a pair of graphs.
 
 The above implementation makes use of both node features(atoms) and edge features(bonds)
+
+The TWOSIDES Pharamacy Side Effects Dataset from TDC was used which you can refer to <a href="https://tdcommons.ai/multi_pred_tasks/ddi/">here</a>.
 
 ## Download Data
 In order to download the Graphs, follow the following steps.
